@@ -1,41 +1,53 @@
 //doms
+var userFormEl = document.getElementById('user-form')
+var movieTitleEl = document.getElementById('movie-title')
+var resultsEl = document.getElementById('results')
+var reviewsEl = document.getElementById('reviews')
 
-//global Variables
-var movieEl
 
+function getResults(movies, searchTerm) {
+if (movies.length === 0) {
+    resultsEl.textContent = "No Movies found";
+    return;
+  }
 
-function getApi() {
-    var dataurl = "https://omdbapi.com/?s=" + userInput + "&apikey=854eb2b2"
+  for (var i = 0; i < movies.length; i++) {
+    var movie = movies[i].title
+  }
 
-    fetch(dataurl)
-    .then (function(response){
-        return response.json();
-    })
-    .then(function(what data are we pulling?){
-
-    })
 }
 
 
+function getApi(title) {
+    var dataurl = "https://omdbapi.com/?s=" + title + "&apikey=854eb2b2"
 
+    fetch(dataurl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data)
+            getResults(data, title)
 
+        })
+}
 
 
 function formSubmitHandler(event) {
     event.preventDefault();
-    
-    var userName = nameInputEl.value.trim();
-    
-    if (userName) {
-      getUserRepos(userName);
-    
-    
-      //cleanuup
-      repoContainerEl.textContent = "";
-      nameInputEl.value = '';
-    }
-    }
-    //2
-    userformEl.addEventListener("submit", formSubmitHandler);
 
-getApi();
+    var userTitle = movieTitleEl.value.trim();
+
+    if (userTitle) {
+        getApi(userTitle);
+
+
+        //cleanuup
+        resultsEl.textContent = "";
+        userTitle.value = '';
+    }
+}
+
+
+userFormEl.addEventListener("submit", formSubmitHandler);
+
