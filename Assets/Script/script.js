@@ -4,33 +4,42 @@ var movieTitleEl = document.getElementById('movie-title')
 var resultsEl = document.getElementById('results')
 var reviewsEl = document.getElementById('reviews')
 
+function infoDump(information) {
+    console.log(information)
+    for (var i = 0; i < information.Search.length; i++) {  
+        var movieTitle = information.Search[i].Title;
+        var movieYear = information.Search[i].Year;
+        console.log(movieTitle);
+        console.log(movieYear);
 
-function getResults(movies, searchTerm) {
-    console.log(movies);
-    console.log(searchTerm);
+        var movieInfo = document.createElement('div')
+        movieInfo.textContent = movieTitle + " was made in the year " + movieYear + '!';
+        
+        reviewsEl.append(movieInfo);
+    }
+}
+
+function getResults(movies) {
     if (movies.length === 0) {
         resultsEl.textContent = "No Movies found";
         return;
     }
-    console.log(movies.Search.length);
     for (var i = 0; i < movies.Search.length; i++) {
         var movieImg = movies.Search[i].Poster;
-        console.log(movieImg);
 
-        // var spanEl = document.createElement('span');
         var imgEl = document.createElement('img');
-
         imgEl.setAttribute('src', movies.Search[i].Poster);
 
-        resultsEl.append(imgEl);
-        // resultsEl.appendChild(spanEl);
+        var clickEl = document.createElement('a');
+        clickEl.setAttribute('href', movies.Search[i].Title)
 
+        imgEl.append(clickEl);
+        resultsEl.append(imgEl);
     }
 
 }
 
-
-function getApi(title) {
+function getApiOmdb(title) {
     var dataurl = "https://omdbapi.com/?s=" + title + "&apikey=854eb2b2"
 
     fetch(dataurl)
@@ -38,9 +47,8 @@ function getApi(title) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data);
-            getResults(data, title);
-
+            getResults(data);
+            infoDump(data);
 
         })
 }
@@ -52,8 +60,7 @@ function formSubmitHandler(event) {
     var userTitle = movieTitleEl.value.trim();
 
     if (userTitle) {
-        getApi(userTitle);
-
+        getApiOmdb(userTitle);
 
         //cleanuup
         resultsEl.textContent = "";
@@ -61,6 +68,22 @@ function formSubmitHandler(event) {
     }
 }
 
+// function () {}
 
+function getApiReviews(title) {
+    var reviewurl = 'https://api.nytimes.com/svc/movies/v2/reviews/search.json?query='+ title +'&api-key=o76pkUAV2dEli9jTa2ys2rDqMdzOkmhF'
+    fetch(reviewurl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            getResults(data, title);
+
+
+        })
+}
+
+
+resultsEl.addEventListener('click', infoDump);
 userFormEl.addEventListener("submit", formSubmitHandler);
 
