@@ -6,14 +6,26 @@ var reviewsEl = document.getElementById('reviews')
 
 
 function getResults(movies, searchTerm) {
-if (movies.length === 0) {
-    resultsEl.textContent = "No Movies found";
-    return;
-  }
+    console.log(movies);
+    console.log(searchTerm);
+    if (movies.length === 0) {
+        resultsEl.textContent = "No Movies found";
+        return;
+    }
+    console.log(movies.Search.length);
+    for (var i = 0; i < movies.Search.length; i++) {
+        var movieImg = movies.Search[i].Poster;
+        console.log(movieImg);
 
-  for (var i = 0; i < movies.length; i++) {
-    var movie = movies[i].title
-  }
+        // var spanEl = document.createElement('span');
+        var imgEl = document.createElement('img');
+
+        imgEl.setAttribute('src', movies.Search[i].Poster);
+
+        resultsEl.append(imgEl);
+        // resultsEl.appendChild(spanEl);
+
+    }
 
 }
 
@@ -26,8 +38,9 @@ function getApi(title) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
-            getResults(data, title)
+            console.log(data);
+            getResults(data, title);
+
 
         })
 }
