@@ -1,73 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="Assets/css/style.css"></script>
-    <script src="Assets/Script/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
-    <title>Know Your Actor!!</title>
-  </head>
-  <header>
-    <h1>How well do you know your Actor?</h1>
-  </header>
-  <body>
-    <!-- first box -->
-    <div class="valign-wrapper">
-      <div class="row">
-        <div class="col s6 m7 l4">
-          <div class="card">
-            <!-- <div class="card-image">
-            <span class="card-title">Card Title</span>
-          </div> -->
-            <div class="card-content">
-              <div class="row">
-                <div class="input-field col s12">
-                  <form id="user-form">
-                    <input id="name" />
-                    <label for="name">Name</label>
-                  </form>
-                </div>
-              </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="Assets/css/style.css"></script>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <title>Movie Informer</title>
+</head>
+<header>
+  <h1>Movie Informer</h1>
+</header>
+
+<body>
+  <!-- first box -->
+
+  <div class="row">
+    <div class="col s6 m7 l8">
+      <div class="card">
+        <div class="card-content">
+          <div class="row">
+            <div class="input-field col s12">
+              <form id="user-form">
+                <label for="movie-title">Movie Title:</label>
+                <input id="movie-title" />
+                <button>Search</button>
+              </form>
             </div>
-            <div class="card-action">
-              <button>Search your actor</button>
-            </div>
-          </div>
-        </div>
-        <!-- second box -->
-        <div class="col s6 m7 l8">
-          <div class="card">
-            <!-- <div class="card-image">
-            <span class="card-title">Card Title</span>
-          </div> -->
-            <div class="card-content">
-              <br />
-              <div id="movies"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- third box -->
-    <div class="row">
-      <div class="col s6 m7 l9">
-        <div class="card">
-          <!-- <div class="card-image">
-            <span class="card-title">Card Title</span>
-          </div> -->
-          <div class="card-content">
-            <div id="reviews"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </body>
+    <!-- second box -->
+    <div class="row"></div>
+    <div class="col s6 m7 l12">
+      <div class="card">
+        <div id="results" class="card-content">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- third box -->
+  <div class="row">
+    <div class="col s6 m7 l9">
+      <div class="card">
+        <div id="reviews" class="card-content">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="Assets/Script/script.js"></script>
+</body>
+
 </html>
