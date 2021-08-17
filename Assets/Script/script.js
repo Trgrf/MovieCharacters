@@ -5,17 +5,14 @@ var resultsEl = document.getElementById('results')
 var reviewsEl = document.getElementById('reviews')
 
 function infoDump(information) {
-    console.log(information)
     for (var i = 0; i < information.Search.length; i++) {  
         var movieTitle = information.Search[i].Title;
         var movieYear = information.Search[i].Year;
-        console.log(movieTitle);
-        console.log(movieYear);
 
         var movieInfo = document.createElement('div')
         movieInfo.textContent = movieTitle + " was made in the year " + movieYear + '!';
         
-        reviewsEl.append(movieInfo);
+        reviewsEl.append(movieInfo); 
     }
 }
 
@@ -25,13 +22,11 @@ function getResults(movies) {
         return;
     }
     for (var i = 0; i < movies.Search.length; i++) {
-        var movieImg = movies.Search[i].Poster;
-
         var imgEl = document.createElement('img');
         imgEl.setAttribute('src', movies.Search[i].Poster);
 
         var clickEl = document.createElement('a');
-        clickEl.setAttribute('href', movies.Search[i].Title)
+        clickEl.setAttribute('href', '#')
 
         imgEl.append(clickEl);
         resultsEl.append(imgEl);
