@@ -28,11 +28,15 @@ function getResults(movies) {
         var imgEl = document.createElement('img');
         imgEl.setAttribute('src', movies.Search[i].Poster);
 
-        var clickEl = document.createElement('a');
-        clickEl.setAttribute('href', '#')
+        var imgTitleEl = document.createElement('h4');
+        imgTitleEl.textContent = movies.Search[i].Title;
+        // var clickEl = document.createElement('a');
+        // clickEl.setAttribute('href', '#')
 
-        imgEl.append(clickEl);
-        resultsEl.append(imgEl);
+        // imgEl.append(clickEl);
+        imgTitleEl.append(imgEl);
+        resultsEl.append(imgTitleEl);
+        getApiReviews(movies.Search[i].Title);
     }
 
 }
@@ -47,7 +51,6 @@ function getApiOmdb(title) {
         .then(function (data) {
             getResults(data);
             infoDump(data);
-            getApiReviews(title);
         })
 }
 
@@ -67,13 +70,13 @@ function formSubmitHandler(event) {
     }
 }
 
-function getReviews(reviews, movieInfo) {
+function getReviews(reviews) {
     for (var i = 0; i < reviews.results.length; i++) {
         var reviewsLink = document.createElement('a');
         reviewsLink.textContent = reviews.results[i].link.suggested_link_text + " ";
         reviewsLink.href = reviews.results[i].link.url;
         
-        movieInfo.appendChild(reviewsLink);
+        reviewsEl.appendChild(reviewsLink);
     }
 }
 
@@ -85,12 +88,8 @@ function getApiReviews(title) {
         })
         .then(function (data) {
             getReviews(data);
-            console.log(data);
             
-
-
         })
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-
