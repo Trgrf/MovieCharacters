@@ -4,6 +4,8 @@ var movieTitleEl = document.getElementById('movie-title')
 var resultsEl = document.getElementById('results')
 var reviewsEl = document.getElementById('reviews')
 
+
+
 function infoDump(information) {
     for (var i = 0; i < information.Search.length; i++) {  
         var movieTitle = information.Search[i].Title;
@@ -13,6 +15,7 @@ function infoDump(information) {
         movieInfo.textContent = movieTitle + " was made in the year " + movieYear + '!';
         
         reviewsEl.append(movieInfo); 
+        // return movieInfo;
     }
 }
 
@@ -44,7 +47,7 @@ function getApiOmdb(title) {
         .then(function (data) {
             getResults(data);
             infoDump(data);
-
+            getApiReviews(title);
         })
 }
 
@@ -59,11 +62,20 @@ function formSubmitHandler(event) {
 
         //cleanuup
         resultsEl.textContent = "";
-        userTitle.value = '';
+        reviewsEl.textContent = "";
+        movieTitleEl.value = '';
     }
 }
 
-// function () {}
+function getReviews(reviews, movieInfo) {
+    for (var i = 0; i < reviews.results.length; i++) {
+        var reviewsLink = document.createElement('a');
+        reviewsLink.textContent = reviews.results[i].link.suggested_link_text + " ";
+        reviewsLink.href = reviews.results[i].link.url;
+        
+        movieInfo.appendChild(reviewsLink);
+    }
+}
 
 function getApiReviews(title) {
     var reviewurl = 'https://api.nytimes.com/svc/movies/v2/reviews/search.json?query='+ title +'&api-key=o76pkUAV2dEli9jTa2ys2rDqMdzOkmhF'
@@ -72,13 +84,13 @@ function getApiReviews(title) {
             return response.json();
         })
         .then(function (data) {
-            getResults(data, title);
+            getReviews(data);
+            console.log(data);
+            
 
 
         })
 }
 
-
-resultsEl.addEventListener('click', infoDump);
 userFormEl.addEventListener("submit", formSubmitHandler);
 
