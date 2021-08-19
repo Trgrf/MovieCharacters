@@ -28,7 +28,7 @@ function getResults(movies) {
     var imgTitleEl = document.createElement("h2");
     imgTitleEl.textContent = movies.Search[i].Title;
     imgTitleEl.setAttribute("data-titles", movies.Search[i].Title);
-    // imgTitleEl.setAttribute("class = review-title");
+
     imgTitleEl.classList.add("review-title");
 
     resultsEl.append(imgTitleEl);
@@ -38,12 +38,13 @@ function getResults(movies) {
 // grabs titles from data attribute of created h4 tags
 function titleCollector(event) {
   var movieTitleReviewEl = event.target;
-  // movieTitleReview.getAttribute("data-titles");
-  var reviewResults = movieTitleReviewEl.getAttribute("data-titles");
-  getApiReview(reviewResults);
-  console.log(reviewResults);
-}
 
+  var reviewResults = movieTitleReviewEl.getAttribute("data-titles");
+  if (reviewResults) {
+    getApiReview(reviewResults);
+    reviewsEl.textContent = "";
+  }
+}
 resultsEl.addEventListener("click", titleCollector);
 
 function getApiOmdb(title) {
@@ -75,11 +76,20 @@ function formSubmitHandler(event) {
 }
 
 function getReview(reviews) {
-  var reviewsLink = document.createElement("a");
-  reviewsLink.textContent = reviews.results.link.suggested_link_text + "";
-  reviewsLink.href = reviews.results.link.url;
+  if (reviews.results === null) {
+    var noReviewEl = document.createElement("p");
+    noReviewEl.textContent = "No reviews found";
+    reviewsEl.appendChild(noReviewEl);
+  } else {
+    for (var i = 0; i < reviews.results.length; i++) {
+      var reviewsLink = document.createElement("a");
+      reviewsLink.textContent =
+        reviews.results[i].link.suggested_link_text + "";
+      reviewsLink.href = reviews.results[i].link.url;
 
-  reviewsEl.appendChild(reviewsLink);
+      reviewsEl.appendChild(reviewsLink);
+    }
+  }
 }
 
 function getApiReview(title) {
@@ -92,8 +102,8 @@ function getApiReview(title) {
       return response.json();
     })
     .then(function (data) {
-      getReview(data);
       console.log(data);
+      getReview(data);
     });
 }
 
