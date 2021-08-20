@@ -82,12 +82,16 @@ function getReview(reviews) {
     reviewsEl.appendChild(noReviewEl);
   } else {
     for (var i = 0; i < reviews.results.length; i++) {
+      var viewList = document.createElement("ul");
+      var listItems = document.createElement("li");
       var reviewsLink = document.createElement("a");
       reviewsLink.textContent =
         reviews.results[i].link.suggested_link_text + "";
       reviewsLink.href = reviews.results[i].link.url;
 
-      reviewsEl.appendChild(reviewsLink);
+      viewList.append(listItems);
+      listItems.append(reviewsLink)      
+      reviewsEl.appendChild(viewList);
     }
   }
 }
@@ -108,3 +112,4 @@ function getApiReview(title) {
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+

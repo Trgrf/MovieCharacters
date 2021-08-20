@@ -1,0 +1,40 @@
+*{
+    background-color: rgb(65, 65, 65);
+    color: white;
+    font-family: 'Lobster', cursive;
+}
+
+
+.container{
+    /* max-width: 980px; */
+     margin: 0 auto;
+    background: #f9f9f9;
+    /* padding: 25px; */
+}
+.parallax{
+    background-image: url(../images/various\ movies.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+     height: 500px;
+}
+
+.parallax-2{
+    background-image: url(../images/movie\ image.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+     height: 500px;
+}
+label {
+    font-size: 24px;
+}
+button {
+    width: 150px;
+}
+h1 {
+    text-align: center;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    
+}

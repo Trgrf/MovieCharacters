@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lobster&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    />
+    <link rel="stylesheet" href="./Assets/css/style.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="Assets/css/style.css"></script>
-  
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-  <title>Movie Informer</title>
-</head>
-<header>
-  <h1>Movie Informer</h1>
-</header>
+    <title>Movie Informer</title>
+  </head>
+  <header>
+    <h1>Movie Informer</h1>
+  </header>
+  <body>
+    <div class="container">
+      <div class="parallax"></div>
+    </div>
 
-<body>
-  <!-- first box -->
+    <!-- first box -->
 
-  <div class="row">
-    <div class="col s6 m7 l8">
-      <div class="card">
-        <div class="card-content">
-          <div class="row">
-            <div class="input-field col s12">
-              <form id="user-form">
-                <label for="movie-title">Movie Title:</label>
-                <input id="movie-title" />
-                <button>Search</button>
-              </form>
+    <div class="row">
+      <div class="col s6 m7 l8">
+        <div class="card">
+          <div class="card-content">
+            <div class="row">
+              <div class="input-field col s12">
+                <form id="user-form">
+                  <label for="movie-title">Movie Title:</label>
+                  <input id="movie-title" />
+                  <button>Search</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
@@ -35,28 +47,30 @@
     </div>
 
     <!-- second box -->
-    <div class="row"></div>
-    <div class="col s6 m7 l12">
-      <div class="card">
-        <div id="results" class="card-content">
+    <div class="row">
+      <div class="col s6 m7 l12">
+        <div class="card">
+          <div id="results" class="card-content"></div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- third box -->
-  <div class="row">
-    <div class="col s6 m7 l12">
-      <div class="card">
-        <div id="reviews" class="card-content">
+    <!-- third box -->
+    <div class="row">
+      <h3>Movie Reviews:</h3>
+      <div class="col s6 m7 l12">
+        <div class="card">
+          <div id="reviews" class="card-content"></div>
         </div>
       </div>
     </div>
-  </div>
+    <footer>
+      <div class="container">
+        <div class="parallax-2"></div>
+      </div>
+    </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-  <script src="Assets/Script/script.js"></script>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="Assets/Script/script.js"></script>
+  </body>
 </html>
