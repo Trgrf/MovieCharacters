@@ -33,8 +33,22 @@ button {
 h1 {
     text-align: center;
 }
-.row{
+
+.img-display {
     display: flex;
-    justify-content: center;
-    
+    flex-wrap: wrap;
+}
+
+h2 {
+    padding: 50px;
+    max-width: 300px;
+}
+
+img {
+    width: 300px;
+    height: 450px;
+}
+
+h3 {
+    text-align: center;
 }

@@ -28,11 +28,13 @@ function getResults(movies) {
     var imgTitleEl = document.createElement("h2");
     imgTitleEl.textContent = movies.Search[i].Title;
     imgTitleEl.setAttribute("data-titles", movies.Search[i].Title);
-
     imgTitleEl.classList.add("review-title");
 
+    var imgContainerEl = document.createElement('p');
+
+    imgContainerEl.appendChild(imgEl);
+    imgTitleEl.append(imgContainerEl);
     resultsEl.append(imgTitleEl);
-    imgTitleEl.appendChild(imgEl);
   }
 }
 // grabs titles from data attribute of created h4 tags
